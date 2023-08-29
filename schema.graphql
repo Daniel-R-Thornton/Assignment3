@@ -1,0 +1,188 @@
+﻿﻿﻿schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type Category {
+  Products: [Product]
+  id: ID!
+  name: String!
+}
+
+type CategoryConnection {
+  items: [Category]
+  nextToken: String
+}
+
+type Mutation {
+  createCategory(input: CreateCategoryInput!): Category
+  createProduct(input: CreateProductInput!): Product
+  deleteCategory(input: DeleteCategoryInput!): Category
+  deleteProduct(input: DeleteProductInput!): Product
+  updateCategory(input: UpdateCategoryInput!): Category
+  updateProduct(input: UpdateProductInput!): Product
+}
+
+type Product {
+  categoryId: ID!
+  content: String!
+  id: ID!
+  price: Int
+  rating: Float
+  title: String!
+}
+
+type ProductConnection {
+  items: [Product]
+  nextToken: String
+}
+
+type Query {
+  getCategory(id: ID!): Category
+  getProduct(id: ID!): Product
+  listCategories(
+    filter: TableCategoryFilterInput
+    limit: Int
+    nextToken: String
+  ): CategoryConnection
+  listProducts(limit: Int, nextToken: String): ProductConnection
+  queryProductsByIdCategoryIndex(
+    after: String
+    categoryId: ID!
+    first: Int
+  ): ProductConnection
+}
+
+type Subscription {
+  onCreateCategory(id: ID, name: String): Category
+    @aws_subscribe(mutations: ["createCategory"])
+  onCreateProduct(
+    content: String
+    id: ID
+    price: Int
+    rating: Float
+    title: String
+  ): Product @aws_subscribe(mutations: ["createProduct"])
+  onDeleteCategory(id: ID, name: String): Category
+    @aws_subscribe(mutations: ["deleteCategory"])
+  onDeleteProduct(
+    content: String
+    id: ID
+    price: Int
+    rating: Float
+    title: String
+  ): Product @aws_subscribe(mutations: ["deleteProduct"])
+  onUpdateCategory(id: ID, name: String): Category
+    @aws_subscribe(mutations: ["updateCategory"])
+  onUpdateProduct(
+    content: String
+    id: ID
+    price: Int
+    rating: Float
+    title: String
+  ): Product @aws_subscribe(mutations: ["updateProduct"])
+}
+
+input CreateCategoryInput {
+  name: String!
+}
+
+input CreateProductInput {
+  categoryId: ID!
+  content: String!
+  price: Int
+  rating: Float
+  title: String!
+}
+
+input DeleteCategoryInput {
+  id: ID!
+}
+
+input DeleteProductInput {
+  id: ID!
+}
+
+input TableBooleanFilterInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input TableCategoryFilterInput {
+  id: TableIDFilterInput
+  name: TableStringFilterInput
+}
+
+input TableFloatFilterInput {
+  between: [Float]
+  contains: Float
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+  notContains: Float
+}
+
+input TableIDFilterInput {
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+}
+
+input TableIntFilterInput {
+  between: [Int]
+  contains: Int
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+  notContains: Int
+}
+
+input TableProductFilterInput {
+  categoryId: TableIDFilterInput
+  content: TableStringFilterInput
+  id: TableIDFilterInput
+  price: TableIntFilterInput
+  rating: TableFloatFilterInput
+  title: TableStringFilterInput
+}
+
+input TableStringFilterInput {
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+}
+
+input UpdateCategoryInput {
+  id: ID!
+  name: String
+}
+
+input UpdateProductInput {
+  categoryId: ID
+  content: String
+  id: ID!
+  price: Int
+  rating: Float
+  title: String
+}

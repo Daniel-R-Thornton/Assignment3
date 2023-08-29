@@ -1,10 +1,13 @@
 import react, { Suspense } from 'react'
-import { Routes, Route } from 'react-router-dom'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import config from '../../aws-exports'
+import { API } from '@aws-amplify/api'
 const Products = react.lazy(() => import('./Products'))
 const Home = react.lazy(() => import('./Home'))
 const About = react.lazy(() => import('./About'))
 const Layout = react.lazy(() => import('./Layout'))
+// after your imports
+API.configure(config)
 
 function App() {
   return (
@@ -21,7 +24,7 @@ function App() {
             }
           />
           <Route
-            path="/products/*"
+            path="/Products/*"
             element={
               <Suspense fallback={<>loading..</>}>
                 <Products />

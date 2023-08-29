@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
+import './Layout.css'
 
 export default function Layout() {
   // return the outlet of the layout
@@ -32,7 +33,10 @@ export default function Layout() {
           </NavLink>
         </div>
       </div>
-      <div className="p-10">
+      <div
+        className="bgLeaves h-full "
+        style={{ height: 'calc(100vh - 90px)' }}
+      >
         <Outlet />
       </div>
     </div>
