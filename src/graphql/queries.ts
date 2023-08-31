@@ -2,6 +2,17 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getCat = /* GraphQL */ `
+  query GetCat($id: ID!) {
+    getCat(id: $id) {
+      content
+      id
+      price
+      title
+      __typename
+    }
+  }
+`;
 export const getCategory = /* GraphQL */ `
   query GetCategory($id: ID!) {
     getCategory(id: $id) {
@@ -50,9 +61,32 @@ export const listCategories = /* GraphQL */ `
     }
   }
 `;
+export const listCats = /* GraphQL */ `
+  query ListCats(
+    $filter: TableCatFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCats(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        content
+        id
+        price
+        title
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
 export const listProducts = /* GraphQL */ `
-  query ListProducts($limit: Int, $nextToken: String) {
-    listProducts(limit: $limit, nextToken: $nextToken) {
+  query ListProducts(
+    $filter: TableProductFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         categoryId
         content
@@ -67,27 +101,11 @@ export const listProducts = /* GraphQL */ `
     }
   }
 `;
-export const queryProductsByIdCategoryIndex = /* GraphQL */ `
-  query QueryProductsByIdCategoryIndex(
-    $after: String
-    $categoryId: ID!
-    $first: Int
-  ) {
-    queryProductsByIdCategoryIndex(
-      after: $after
-      categoryId: $categoryId
-      first: $first
-    ) {
-      items {
-        categoryId
-        content
-        id
-        price
-        rating
-        title
-        __typename
-      }
-      nextToken
+export const singlePost = /* GraphQL */ `
+  query SinglePost($id: ID!) {
+    singlePost(id: $id) {
+      id
+      title
       __typename
     }
   }

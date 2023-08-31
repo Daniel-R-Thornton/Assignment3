@@ -2,6 +2,29 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateCat = /* GraphQL */ `
+  subscription OnCreateCat(
+    $categoryId: ID
+    $content: String
+    $id: ID
+    $price: Int
+    $title: String
+  ) {
+    onCreateCat(
+      categoryId: $categoryId
+      content: $content
+      id: $id
+      price: $price
+      title: $title
+    ) {
+      content
+      id
+      price
+      title
+      __typename
+    }
+  }
+`;
 export const onCreateCategory = /* GraphQL */ `
   subscription OnCreateCategory($id: ID, $name: String) {
     onCreateCategory(id: $id, name: $name) {
@@ -45,6 +68,22 @@ export const onCreateProduct = /* GraphQL */ `
     }
   }
 `;
+export const onDeleteCat = /* GraphQL */ `
+  subscription OnDeleteCat(
+    $content: String
+    $id: ID
+    $price: Int
+    $title: String
+  ) {
+    onDeleteCat(content: $content, id: $id, price: $price, title: $title) {
+      content
+      id
+      price
+      title
+      __typename
+    }
+  }
+`;
 export const onDeleteCategory = /* GraphQL */ `
   subscription OnDeleteCategory($id: ID, $name: String) {
     onDeleteCategory(id: $id, name: $name) {
@@ -83,6 +122,29 @@ export const onDeleteProduct = /* GraphQL */ `
       id
       price
       rating
+      title
+      __typename
+    }
+  }
+`;
+export const onUpdateCat = /* GraphQL */ `
+  subscription OnUpdateCat(
+    $categoryId: ID
+    $content: String
+    $id: ID
+    $price: Int
+    $title: String
+  ) {
+    onUpdateCat(
+      categoryId: $categoryId
+      content: $content
+      id: $id
+      price: $price
+      title: $title
+    ) {
+      content
+      id
+      price
       title
       __typename
     }

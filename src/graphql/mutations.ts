@@ -2,6 +2,17 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createCat = /* GraphQL */ `
+  mutation CreateCat($input: CreateCatInput!) {
+    createCat(input: $input) {
+      content
+      id
+      price
+      title
+      __typename
+    }
+  }
+`;
 export const createCategory = /* GraphQL */ `
   mutation CreateCategory($input: CreateCategoryInput!) {
     createCategory(input: $input) {
@@ -33,6 +44,17 @@ export const createProduct = /* GraphQL */ `
     }
   }
 `;
+export const deleteCat = /* GraphQL */ `
+  mutation DeleteCat($input: DeleteCatInput!) {
+    deleteCat(input: $input) {
+      content
+      id
+      price
+      title
+      __typename
+    }
+  }
+`;
 export const deleteCategory = /* GraphQL */ `
   mutation DeleteCategory($input: DeleteCategoryInput!) {
     deleteCategory(input: $input) {
@@ -59,6 +81,26 @@ export const deleteProduct = /* GraphQL */ `
       id
       price
       rating
+      title
+      __typename
+    }
+  }
+`;
+export const putPost = /* GraphQL */ `
+  mutation PutPost($id: ID!, $title: String!) {
+    putPost(id: $id, title: $title) {
+      id
+      title
+      __typename
+    }
+  }
+`;
+export const updateCat = /* GraphQL */ `
+  mutation UpdateCat($input: UpdateCatInput!) {
+    updateCat(input: $input) {
+      content
+      id
+      price
       title
       __typename
     }

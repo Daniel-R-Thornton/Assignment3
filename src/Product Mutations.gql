@@ -1,0 +1,115 @@
+# toys
+# f8c391ff-dc42-4919-aa16-7faea988076f
+mutation MyMutation {
+  p1: createProduct(
+    input: {
+      categoryId: "f8c391ff-dc42-4919-aa16-7faea988076f"
+      content: "This Flashy Feather toy will keep your cat amused for hours!"
+      price: 25
+      rating: 5
+      title: "Feather Toy"
+    }
+  )
+  p2: createProduct(
+    input: {
+      categoryId: "f8c391ff-dc42-4919-aa16-7faea988076f"
+      content: "Help your cat keep their claws sharp with this scratching post!"
+      price: 25
+      rating: 5
+      title: "Scratching Post"
+    }
+  )
+  p3: createProduct(
+    input: {
+      categoryId: "f8c391ff-dc42-4919-aa16-7faea988076f"
+      content: "This cat bed is super comfy and will keep your cat warm!"
+      price: 25
+      rating: 5
+      title: "Cat Bed"
+    }
+  )
+  p4: createProduct(
+    input: {
+      categoryId: "f8c391ff-dc42-4919-aa16-7faea988076f"
+      content: "This cat shelf will give your cat a place to perch and watch the world go by!"
+      price: 25
+      rating: 5
+      title: "Cat Shelf"
+    }
+  )
+}
+
+# {
+#   "data": {
+#     "p1": {
+#       "id": "4bde90ff-2c8a-41e0-873d-92b74c3c8895"
+#     },
+#     "p2": {
+#       "id": "4a7dc0d4-eea0-4a41-a6e2-d8031cd040ef"
+#     },
+#     "p3": {
+#       "id": "f4d87779-f559-41e0-8f12-f596ab1bef57"
+#     },
+#     "p4": {
+#       "id": "642192e1-9467-4a18-b970-6b67e863d68f"
+#     }
+#   }
+# }
+
+
+# snacks
+# 7e792994-8734-4520-91da-b0f8aa994463
+mutation MyMutation {
+  p1: createProduct(
+    input: {
+      categoryId: "7e792994-8734-4520-91da-b0f8aa994463"
+      content: "This catnip will keep your cat amused for hours!"
+      price: 40
+      rating: 5
+      title: "Catnip"
+    }
+  )
+  p2: createProduct(
+    input: {
+      categoryId: "7e792994-8734-4520-91da-b0f8aa994463"
+      content: "Help your cat keep its teeth clean with this crunchy treat!"
+      price: 3.4
+      rating: 3.5
+      title: "Crunchy Treats"
+    }
+  )
+  p3: createProduct(
+    input: {
+      categoryId: "7e792994-8734-4520-91da-b0f8aa994463"
+      content: "This tasty paste will have you cat coming back for more every time"
+      price: 12
+      rating: 5
+      title: "Lickable Fish Paste"
+    }
+  )
+  p4: createProduct(
+    input: {
+      categoryId: "7e792994-8734-4520-91da-b0f8aa994463"
+      content: "This dried fish treats will help keep your cat's teeth clean and healthy!"
+      price: 25
+      rating: 3
+      title: "Dried Fish Treats"
+    }
+  )
+}
+{
+  "data": {
+    "p1": {
+      "id": "da569ead-8287-4532-bea8-bb7a67ba9604"
+    },
+    "p2": {
+      "id": "89007ebe-bacd-482d-83f1-23df61cade2b"
+    },
+    "p3": {
+      "id": "7e14ff1c-c3de-4f68-b447-7b2f31c9c82d"
+    },
+    "p4": {
+      "id": "ae1ced8c-ee4d-4b8c-87d7-b30cc1967a57"
+    }
+  }
+}

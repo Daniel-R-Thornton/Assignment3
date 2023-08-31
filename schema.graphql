@@ -4,6 +4,18 @@
   subscription: Subscription
 }
 
+type Cat {
+  content: String!
+  id: ID!
+  price: Int
+  title: String!
+}
+
+type CatConnection {
+  items: [Cat]
+  nextToken: String
+}
+
 type Category {
   Products: [Product]
   id: ID!
@@ -16,12 +28,21 @@ type CategoryConnection {
 }
 
 type Mutation {
+  createCat(input: CreateCatInput!): Cat
   createCategory(input: CreateCategoryInput!): Category
   createProduct(input: CreateProductInput!): Product
+  deleteCat(input: DeleteCatInput!): Cat
   deleteCategory(input: DeleteCategoryInput!): Category
   deleteProduct(input: DeleteProductInput!): Product
+  putPost(id: ID!, title: String!): Post
+  updateCat(input: UpdateCatInput!): Cat
   updateCategory(input: UpdateCategoryInput!): Category
   updateProduct(input: UpdateProductInput!): Product
+}
+
+type Post {
+  id: ID!
+  title: String!
 }
 
 type Product {
@@ -39,6 +60,7 @@ type ProductConnection {
 }
 
 type Query {
+  getCat(id: ID!): Cat
   getCategory(id: ID!): Category
   getProduct(id: ID!): Product
   listCategories(
@@ -46,15 +68,27 @@ type Query {
     limit: Int
     nextToken: String
   ): CategoryConnection
-  listProducts(limit: Int, nextToken: String): ProductConnection
-  queryProductsByIdCategoryIndex(
-    after: String
-    categoryId: ID!
-    first: Int
+  listCats(
+    filter: TableCatFilterInput
+    limit: Int
+    nextToken: String
+  ): CatConnection
+  listProducts(
+    filter: TableProductFilterInput
+    limit: Int
+    nextToken: String
   ): ProductConnection
+  singlePost(id: ID!): Post
 }
 
 type Subscription {
+  onCreateCat(
+    categoryId: ID
+    content: String
+    id: ID
+    price: Int
+    title: String
+  ): Cat @aws_subscribe(mutations: ["createCat"])
   onCreateCategory(id: ID, name: String): Category
     @aws_subscribe(mutations: ["createCategory"])
   onCreateProduct(
@@ -64,6 +98,8 @@ type Subscription {
     rating: Float
     title: String
   ): Product @aws_subscribe(mutations: ["createProduct"])
+  onDeleteCat(content: String, id: ID, price: Int, title: String): Cat
+    @aws_subscribe(mutations: ["deleteCat"])
   onDeleteCategory(id: ID, name: String): Category
     @aws_subscribe(mutations: ["deleteCategory"])
   onDeleteProduct(
@@ -73,6 +109,13 @@ type Subscription {
     rating: Float
     title: String
   ): Product @aws_subscribe(mutations: ["deleteProduct"])
+  onUpdateCat(
+    categoryId: ID
+    content: String
+    id: ID
+    price: Int
+    title: String
+  ): Cat @aws_subscribe(mutations: ["updateCat"])
   onUpdateCategory(id: ID, name: String): Category
     @aws_subscribe(mutations: ["updateCategory"])
   onUpdateProduct(
@@ -82,6 +125,13 @@ type Subscription {
     rating: Float
     title: String
   ): Product @aws_subscribe(mutations: ["updateProduct"])
+}
+
+input CreateCatInput {
+  content: String!
+  id: ID!
+  price: Int
+  title: String!
 }
 
 input CreateCategoryInput {
@@ -96,6 +146,10 @@ input CreateProductInput {
   title: String!
 }
 
+input DeleteCatInput {
+  id: ID!
+}
+
 input DeleteCategoryInput {
   id: ID!
 }
@@ -107,6 +161,13 @@ input DeleteProductInput {
 input TableBooleanFilterInput {
   eq: Boolean
   ne: Boolean
+}
+
+input TableCatFilterInput {
+  content: TableStringFilterInput
+  id: TableIDFilterInput
+  price: TableIntFilterInput
+  title: TableStringFilterInput
 }
 
 input TableCategoryFilterInput {
@@ -171,6 +232,14 @@ input TableStringFilterInput {
   lt: String
   ne: String
   notContains: String
+}
+
+input UpdateCatInput {
+  categoryId: ID
+  content: String
+  id: ID!
+  price: Int
+  title: String
 }
 
 input UpdateCategoryInput {

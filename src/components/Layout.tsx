@@ -22,6 +22,26 @@ export default function Layout() {
             Home
           </NavLink>
           <NavLink
+            to="/Adoptions"
+            className={({ isActive }) =>
+              isActive
+                ? 'rounded px-3 py-2 bg-gray-700'
+                : 'rounded px-3 py-2 text-gray-300 hover:bg-gray-700'
+            }
+          >
+            Adoptions
+          </NavLink>
+          <NavLink
+            to="/ShopProducts"
+            className={({ isActive }) =>
+              isActive
+                ? 'rounded px-3 py-2 bg-gray-700'
+                : 'rounded px-3 py-2 text-gray-300 hover:bg-gray-700'
+            }
+          >
+            Cat Toys And Enrichment
+          </NavLink>
+          <NavLink
             to="/about"
             className={({ isActive }) =>
               isActive

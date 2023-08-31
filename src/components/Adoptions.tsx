@@ -1,89 +1,92 @@
 import { API, GraphQLResult } from '@aws-amplify/api'
-import { ListProductsQuery, Product } from 'API'
-import { listProducts } from 'graphql/queries'
+import { ListCatsQuery, Cat } from 'API'
+import { listCats } from 'graphql/queries'
 import { useEffect, useState } from 'react'
 
-export default function Products() {
-  const [products, setProducts] = useState<Product[]>()
-  const [selectedProduct, setSelectedProduct] = useState<Product[]>()
+export default function Adoptions() {
+  const [cats, setCats] = useState<Cat[]>()
+  const [selectedCats, setSelectedCats] = useState<Cat[]>()
   // initially only get 1000, but if required we can use a next token for pagination.
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchCats = async () => {
       const response = (await API.graphql({
-        query: listProducts,
+        query: listCats,
         variables: { limit: 100 }
-      })) as GraphQLResult<ListProductsQuery>
+      })) as GraphQLResult<ListCatsQuery>
       console.log('response', response)
-      if (response.data?.listProducts?.items) {
-        setProducts(response.data?.listProducts.items as Product[])
+      if (response.data?.listCats?.items) {
+        setCats(response.data?.listCats.items as Cat[])
       }
     }
-    fetchProducts()
+    fetchCats()
     // set the state of selected item from the cached cookie
-    const selectedProducts = localStorage.getItem('selectedProducts')
-    if (selectedProducts) {
-      setSelectedProduct(JSON.parse(selectedProducts))
+    const selectedCats = localStorage.getItem('selectedCats')
+    if (selectedCats) {
+      if (selectedCats === 'undefined') {
+        return
+      }
+      setSelectedCats(JSON.parse(selectedCats ?? '{}'))
     }
   }, [])
 
-  const updateSelectedProducts = (product: Product, adding: boolean) => {
+  const updateSelectedCats = (cat: Cat, adding: boolean) => {
     if (adding) {
-      setSelectedProduct([...(selectedProduct || []), product])
+      setSelectedCats([...(selectedCats || []), cat])
     }
     if (!adding) {
-      setSelectedProduct(
-        (selectedProduct || []).filter((p) => p.id !== product.id)
-      )
+      setSelectedCats((selectedCats || []).filter((p) => p.id !== cat.id))
     }
   }
 
+  useEffect(() => {
+    localStorage.setItem('selectedCats', JSON.stringify(selectedCats))
+  }, [selectedCats])
+
   return (
-    <>
+    <div className="max-h-full overflow-auto">
       <h1 className="w-full pt-3 text-center text-4xl font-semibold ">
-        Cat Available To Sponsor!
+        Cats Available To Adopt!
       </h1>
       <div className="grid grid-cols-6 gap-4 px-20 py-2">
-        {products?.map((product) => (
+        {cats?.map((cat) => (
           <div
             className="rounded-lg border border-gray-200 bg-white p-4 drop-shadow-md"
-            key={product.id}
+            key={cat.id}
           >
             <div className="pb-2 text-center text-xl font-semibold">
-              {product?.title}
+              {cat?.title}
             </div>
             <div className="flex justify-center">
               <img
                 className="h-40 w-40 object-contain"
                 src={
-                  'https://cat-images-uni.s3.amazonaws.com/' +
-                  product?.id +
+                  'https://catadoption-uni.s3.ap-southeast-2.amazonaws.com/' +
+                  cat?.id +
                   '.jpg'
                 }
-                alt={product?.title}
+                alt={cat?.title}
               />
             </div>
             <div className="pt-4">
-              <div className="text-gray-500">{product?.content}</div>
-              <div className="flex justify-center pt-1">
-                ${product?.price} / Month
-              </div>
+              <div className="min-h-[140px] text-gray-500">{cat?.content}</div>
+              <div className="flex justify-center pt-1">${cat?.price}</div>
               <div className="flex items-center justify-center pt-4 ">
                 <button
                   className={`w-[80%] rounded  px-4 py-2 font-bold text-white ${
-                    !selectedProduct?.find((p) => p.id === product.id)
+                    !selectedCats?.find((p) => p.id === cat.id)
                       ? ' bg-blue-500 hover:bg-blue-700'
                       : ' bg-red-500 hover:bg-red-700'
                   }`}
                   onClick={() =>
-                    updateSelectedProducts(
-                      product,
-                      !selectedProduct?.find((p) => p.id === product.id)
+                    updateSelectedCats(
+                      cat,
+                      !selectedCats?.find((p) => p.id === cat.id)
                     )
                   }
                 >
-                  {!selectedProduct?.find((p) => p.id === product.id)
-                    ? 'Add Sponsorship To Cart'
-                    : 'Remove Sponsorship From Cart'}
+                  {!selectedCats?.find((p) => p.id === cat.id)
+                    ? 'Meet Me On Your Visit!'
+                    : 'I Changed My Mind '}
                 </button>
               </div>
             </div>
@@ -92,8 +95,9 @@ export default function Products() {
         {/* floating shopping cart button */}
         <div className="fixed bottom-0 right-0 p-4">
           {/* little floating number top right of the circle button showing number of items in car */}
-          <div
-            className="
+          {!!selectedCats?.length && (
+            <div
+              className="
             absolute
             right-6
             top-3
@@ -105,22 +109,20 @@ export default function Products() {
             font-bold
             text-white
             "
-          >
-            {selectedProduct?.length}
-          </div>
+            >
+              {selectedCats?.length}
+            </div>
+          )}
           <button
             className="h-20 w-20   rounded-full bg-green-700 px-4 py-2 font-bold text-white hover:bg-green-900"
             onClick={() =>
-              localStorage.setItem(
-                'selectedProducts',
-                JSON.stringify(selectedProduct)
-              )
+              localStorage.setItem('selectedCats', JSON.stringify(selectedCats))
             }
           >
-            Cart
+            Book Now!
           </button>
         </div>
       </div>
-    </>
+    </div>
   )
 }
