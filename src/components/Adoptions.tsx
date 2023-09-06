@@ -2,6 +2,7 @@ import { API, GraphQLResult } from '@aws-amplify/api'
 import { ListCatsQuery, Cat } from 'API'
 import { listCats } from 'graphql/queries'
 import { useEffect, useState } from 'react'
+import { Modal } from './Modal'
 
 export default function Adoptions() {
   const [cats, setCats] = useState<Cat[]>()
@@ -44,6 +45,14 @@ export default function Adoptions() {
 
   return (
     <div className="max-h-full overflow-auto">
+      <Modal
+        title="Thank You!"
+        content="Your booking has been confirmed!"
+        isOpen={true}
+        onCancel={() => {}}
+        onOk={() => {}}
+        key={1}
+      />
       <h1 className="w-full pt-3 text-center text-4xl font-semibold ">
         Cats Available To Adopt!
       </h1>
