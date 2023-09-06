@@ -7,6 +7,7 @@ import { Modal } from './Modal'
 export default function Adoptions() {
   const [cats, setCats] = useState<Cat[]>()
   const [selectedCats, setSelectedCats] = useState<Cat[]>()
+  const [showCheckoutModal, setShowCheckoutModal] = useState(false)
   // initially only get 1000, but if required we can use a next token for pagination.
   useEffect(() => {
     const fetchCats = async () => {
@@ -43,14 +44,83 @@ export default function Adoptions() {
     localStorage.setItem('selectedCats', JSON.stringify(selectedCats))
   }, [selectedCats])
 
+  const formContent = (
+    <div className="flex w-full flex-col items-center justify-center">
+      <div className="flex flex-col">
+        <label className="text-gray-500">First Name</label>
+        <input
+          className="rounded-md border border-gray-300"
+          type="text"
+          placeholder="First Name"
+        />
+      </div>
+
+      <div className="flex flex-col">
+        <label className="text-gray-500">Last Name</label>
+        <input
+          className="rounded-md border border-gray-300"
+          type="text"
+          placeholder="Last Name"
+        />
+      </div>
+
+      <div className="flex flex-col">
+        <label className="text-gray-500">Email</label>
+        <input
+          className="rounded-md border border-gray-300"
+          type="text"
+          placeholder="Email"
+        />
+      </div>
+
+      <div className="flex flex-col">
+        <label className="text-gray-500">Phone</label>
+        <input
+          className="rounded-md border border-gray-300"
+          type="text"
+          placeholder="Phone"
+        />
+      </div>
+
+      <div className="flex flex-col">
+        <label className="text-gray-500">Address</label>
+        <input
+          className="rounded-md border border-gray-300"
+          type="text"
+          placeholder="Address"
+        />
+      </div>
+
+      <div className="flex flex-col">
+        <label className="text-gray-500">City</label>
+        <input
+          className="rounded-md border border-gray-300"
+          type="text"
+          placeholder="City"
+        />
+      </div>
+
+      <div className="flex flex-col">
+        <label className="text-gray-500">State</label>
+        <input
+          className="rounded-md border border-gray-300"
+          type="text"
+          placeholder="State"
+        />
+      </div>
+    </div>
+  )
+
   return (
     <div className="max-h-full overflow-auto">
       <Modal
         title="Thank You!"
-        content="Your booking has been confirmed!"
-        isOpen={true}
+        content={formContent}
+        isOpen={showCheckoutModal}
         onCancel={() => {}}
-        onOk={() => {}}
+        onOk={() => {
+          setShowCheckoutModal(false)
+        }}
         key={1}
       />
       <h1 className="w-full pt-3 text-center text-4xl font-semibold ">
@@ -124,9 +194,10 @@ export default function Adoptions() {
           )}
           <button
             className="h-20 w-20   rounded-full bg-green-700 px-4 py-2 font-bold text-white hover:bg-green-900"
-            onClick={() =>
+            onClick={() => {
               localStorage.setItem('selectedCats', JSON.stringify(selectedCats))
-            }
+              setShowCheckoutModal(true)
+            }}
           >
             Book Now!
           </button>

@@ -9,7 +9,7 @@ export const Modal = ({
   isOpen
 }: {
   title: string
-  content: string
+  content: React.ReactNode
   onOk: () => void
   onCancel: () => void
   isOpen: boolean
@@ -26,27 +26,57 @@ export const Modal = ({
         flex
         h-[50vh]
         w-[50vw]
+        flex-col
         rounded-sm
         bg-white
         drop-shadow-lg
       "
         >
-          <div>
-            <h2>{title}</h2>
-            <p>{content}</p>
-            <div
-              className="
+          <h2 className="w-full p-10 text-center text-3xl font-semibold">
+            {title}
+          </h2>
+          {content}
+          <div
+            className="
+              absolute
+                bottom-0
             flex
             h-20
             w-full
             items-center
-            justify-center
-            space-x-4       
+            justify-end
+            space-x-4  
+            pr-10     
             "
+          >
+            <button
+              className="
+              rounded
+                bg-blue-500
+                px-4
+                text-xl
+                font-bold
+                text-white
+                hover:bg-blue-700
+              "
+              onClick={onOk}
             >
-              <button onClick={onOk}>Ok</button>
-              <button onClick={onCancel}>Cancel</button>
-            </div>
+              Finish
+            </button>
+            <button
+              className="
+              rounded
+                bg-red-500
+                px-4
+                text-xl
+                font-bold
+                text-white
+                hover:bg-red-700
+              "
+              onClick={onCancel}
+            >
+              Cancel
+            </button>
           </div>
         </div>
       </div>
