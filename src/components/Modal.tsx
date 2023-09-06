@@ -52,20 +52,6 @@ export const Modal = ({
             <button
               className="
               rounded
-                bg-blue-500
-                px-4
-                text-xl
-                font-bold
-                text-white
-                hover:bg-blue-700
-              "
-              onClick={onOk}
-            >
-              Finish
-            </button>
-            <button
-              className="
-              rounded
                 bg-red-500
                 px-4
                 text-xl
@@ -76,6 +62,20 @@ export const Modal = ({
               onClick={onCancel}
             >
               Cancel
+            </button>
+            <button
+              className="
+              rounded
+                bg-blue-500
+                px-4
+                text-xl
+                font-bold
+                text-white
+                hover:bg-blue-700
+              "
+              onClick={onOk}
+            >
+              Finish
             </button>
           </div>
         </div>

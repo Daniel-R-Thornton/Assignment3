@@ -45,68 +45,84 @@ export default function Adoptions() {
   }, [selectedCats])
 
   const formContent = (
-    <div className="flex w-full flex-col items-center justify-center">
-      <div className="flex flex-col">
-        <label className="text-gray-500">First Name</label>
-        <input
-          className="rounded-md border border-gray-300"
-          type="text"
-          placeholder="First Name"
-        />
+    <div className="flex w-full flex-col items-center justify-center gap-8">
+      <div className="flex w-1/2 flex-col gap-2">
+        <div className="flex">
+          <label className="w-24 text-gray-500">First Name</label>
+          <input
+            className="flex-1 rounded-md border border-gray-300"
+            type="text"
+            placeholder="First Name"
+          />
+        </div>
+
+        <div className="flex">
+          <label className="w-24 text-gray-500">Last Name</label>
+          <input
+            className="flex-1 rounded-md border border-gray-300"
+            type="text"
+            placeholder="Last Name"
+          />
+        </div>
+
+        <div className="flex">
+          <label className="w-24 text-gray-500">Email</label>
+          <input
+            className="flex-1 rounded-md border border-gray-300"
+            type="text"
+            placeholder="Email"
+          />
+        </div>
+
+        <div className="flex">
+          <label className="w-24 text-gray-500">Phone</label>
+          <input
+            className="flex-1 rounded-md border border-gray-300"
+            type="text"
+            placeholder="Phone"
+          />
+        </div>
+
+        <div className="flex">
+          <label className="w-24 text-gray-500">Address</label>
+          <input
+            className="flex-1 rounded-md border border-gray-300"
+            type="text"
+            placeholder="Address"
+          />
+        </div>
+
+        <div className="flex">
+          <label className="w-24 text-gray-500">City</label>
+          <input
+            className="flex-1 rounded-md border border-gray-300"
+            type="text"
+            placeholder="City"
+          />
+        </div>
+
+        <div className="flex">
+          <label className="w-24 text-gray-500">State</label>
+          <input
+            className="flex-1 rounded-md border border-gray-300"
+            type="text"
+            placeholder="State"
+          />
+        </div>
       </div>
 
-      <div className="flex flex-col">
-        <label className="text-gray-500">Last Name</label>
-        <input
-          className="rounded-md border border-gray-300"
-          type="text"
-          placeholder="Last Name"
-        />
-      </div>
+      <div className="flex flex-col gap-2">
+        <h2 className="text-lg font-medium">Selected Cats</h2>
 
-      <div className="flex flex-col">
-        <label className="text-gray-500">Email</label>
-        <input
-          className="rounded-md border border-gray-300"
-          type="text"
-          placeholder="Email"
-        />
-      </div>
-
-      <div className="flex flex-col">
-        <label className="text-gray-500">Phone</label>
-        <input
-          className="rounded-md border border-gray-300"
-          type="text"
-          placeholder="Phone"
-        />
-      </div>
-
-      <div className="flex flex-col">
-        <label className="text-gray-500">Address</label>
-        <input
-          className="rounded-md border border-gray-300"
-          type="text"
-          placeholder="Address"
-        />
-      </div>
-
-      <div className="flex flex-col">
-        <label className="text-gray-500">City</label>
-        <input
-          className="rounded-md border border-gray-300"
-          type="text"
-          placeholder="City"
-        />
-      </div>
-
-      <div className="flex flex-col">
-        <label className="text-gray-500">State</label>
-        <input
-          className="rounded-md border border-gray-300"
-          type="text"
-          placeholder="State"
-        />
+        {(selectedCats?.length ?? 0) > 0 ? (
+          <ul className="list-inside list-disc">
+            {selectedCats?.map((catName) => (
+              <li key={catName.id}>{catName.title}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>No cats selected.</p>
+        )}
       </div>
     </div>
   )
@@ -114,7 +130,7 @@ export default function Adoptions() {
   return (
     <div className="max-h-full overflow-auto">
       <Modal
-        title="Thank You!"
+        title="Time to meet the cats, let us know about you!"
         content={formContent}
         isOpen={showCheckoutModal}
         onCancel={() => {}}

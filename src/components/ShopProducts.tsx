@@ -2,11 +2,13 @@ import { API, GraphQLResult } from '@aws-amplify/api'
 import { Category, ListCategoriesQuery, ListProductsQuery, Product } from 'API'
 import { listCategories, listProducts } from 'graphql/queries'
 import { useEffect, useState } from 'react'
+import { Modal } from './Modal'
 
 export default function Adoptions() {
   const [products, setProducts] = useState<Product[]>()
   const [categories, setCategories] = useState<Category[]>()
   const [selectedProducts, setSelectedProducts] = useState<Product[]>()
+  const [showCheckoutModal, setShowCheckoutModal] = useState(false)
   // initially only get 1000, but if required we can use a next token for pagination.
   useEffect(() => {
     const fetchProducts = async () => {
@@ -54,6 +56,49 @@ export default function Adoptions() {
       )
     }
   }
+
+  const formContent = (
+    // simple checkout form with name and email and other details such as payment and what the user is ordering
+    <form className="p-10">
+      <div className="flex flex-col gap-3">
+        <div className="flex">
+          <label className="w-24 text-gray-500">Name</label>
+          <input
+            className="flex-1 rounded-md border border-gray-300"
+            type="text"
+            placeholder="Name"
+          />
+        </div>
+
+        <div className="flex">
+          <label className="w-24 text-gray-500">Email</label>
+          <input
+            className="flex-1 rounded-md border border-gray-300"
+            type="text"
+            placeholder="Email"
+          />
+        </div>
+
+        <div className="flex">
+          <label className="w-24 text-gray-500">Payment Method</label>
+          <select className="flex-1 rounded-md border border-gray-300">
+            <option value="">Select a payment method</option>
+            <option value="credit-card">Credit Card</option>
+            <option value="paypal">PayPal</option>
+            <option value="bitcoin">Bitcoin</option>
+          </select>
+        </div>
+
+        <div className="flex">
+          <label className="w-24 text-gray-500">Order Details</label>
+          <textarea
+            className="flex-1 rounded-md border border-gray-300"
+            placeholder="Order Details"
+          />
+        </div>
+      </div>
+    </form>
+  )
 
   useEffect(() => {
     localStorage.setItem('selectedProducts', JSON.stringify(selectedProducts))
@@ -123,6 +168,16 @@ export default function Adoptions() {
         </>
       ))}
       {/* floating shopping cart button */}
+      <Modal
+        title="Time to meet the cats, let us know about you!"
+        content={formContent}
+        isOpen={showCheckoutModal}
+        onCancel={() => {}}
+        onOk={() => {
+          setShowCheckoutModal(false)
+        }}
+        key={1}
+      />
       <div className="fixed bottom-0 right-0 p-4">
         {/* little floating number top right of the circle button showing number of items in car */}
         {!!selectedProducts?.length && (
@@ -145,14 +200,15 @@ export default function Adoptions() {
         )}
         <button
           className="h-20 w-20   rounded-full bg-green-700 px-4 py-2 font-bold text-white hover:bg-green-900"
-          onClick={() =>
+          onClick={() => {
             localStorage.setItem(
               'selectedProducts',
               JSON.stringify(selectedProducts)
             )
-          }
+            setShowCheckoutModal(true)
+          }}
         >
-          Book Now!
+          Complete Order
         </button>
       </div>
     </div>
