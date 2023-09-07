@@ -199,7 +199,7 @@ export default function Adoptions() {
           </div>
         )}
         <button
-          className="h-20 w-20   rounded-full bg-green-700 px-4 py-2 font-bold text-white hover:bg-green-900"
+          className="h-20 w-20 rounded-full  bg-green-700 px-4 py-2 text-center font-bold text-white hover:bg-green-900"
           onClick={() => {
             localStorage.setItem(
               'selectedProducts',
@@ -208,7 +208,7 @@ export default function Adoptions() {
             setShowCheckoutModal(true)
           }}
         >
-          Complete Order
+          Check Out
         </button>
       </div>
     </div>
