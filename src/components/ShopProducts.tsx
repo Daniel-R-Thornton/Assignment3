@@ -169,7 +169,7 @@ export default function Adoptions() {
       ))}
       {/* floating shopping cart button */}
       <Modal
-        title="Time to meet the cats, let us know about you!"
+        title="Checkout"
         content={formContent}
         isOpen={showCheckoutModal}
         onCancel={() => {
@@ -177,6 +177,9 @@ export default function Adoptions() {
         }}
         onOk={() => {
           setShowCheckoutModal(false)
+          // clear the cart
+          setSelectedProducts([])
+          localStorage.setItem('selectedProducts', JSON.stringify([]))
         }}
         key={1}
       />
@@ -208,9 +211,6 @@ export default function Adoptions() {
               JSON.stringify(selectedProducts)
             )
             setShowCheckoutModal(true)
-            // clear the cart
-            setSelectedProducts([])
-            localStorage.setItem('selectedProducts', JSON.stringify([]))
           }}
         >
           Check Out

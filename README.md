@@ -6,26 +6,11 @@ This is a boilerplate build with Vite, React 18, TypeScript, Vitest, Testing Lib
 
 ## What is inside?
 
-This project uses many tools like:
+Daniel T's University assignment for Web Apps.
 
-- [Vite](https://vitejs.dev)
-- [ReactJS](https://reactjs.org)
-- [TypeScript](https://www.typescriptlang.org)
-- [Vitest](https://vitest.dev)
-- [Testing Library](https://testing-library.com)
-- [Tailwindcss](https://tailwindcss.com)
-- [Eslint](https://eslint.org)
-- [Prettier](https://prettier.io)
+A simple cat website.
 
 ## Getting Started
-
-### Install
-
-Create the project.
-
-```bash
-npx degit joaopaulomoraes/reactjs-vite-tailwindcss-boilerplate my-app
-```
 
 Access the project directory.
 
