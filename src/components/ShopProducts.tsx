@@ -157,7 +157,7 @@ export default function Adoptions() {
                         }
                       >
                         {!selectedProducts?.find((p) => p.id === product.id)
-                          ? 'Meet Me On Your Visit!'
+                          ? 'Add to card'
                           : 'I Changed My Mind '}
                       </button>
                     </div>
