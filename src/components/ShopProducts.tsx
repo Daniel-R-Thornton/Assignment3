@@ -208,6 +208,9 @@ export default function Adoptions() {
               JSON.stringify(selectedProducts)
             )
             setShowCheckoutModal(true)
+            // clear the cart
+            setSelectedProducts([])
+            localStorage.setItem('selectedProducts', JSON.stringify([]))
           }}
         >
           Check Out

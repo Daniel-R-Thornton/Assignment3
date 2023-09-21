@@ -138,6 +138,9 @@ export default function Adoptions() {
         }}
         onOk={() => {
           setShowCheckoutModal(false)
+          setSelectedCats([])
+          // clear the cart
+          localStorage.setItem('selectedCats', JSON.stringify([]))
         }}
         key={1}
       />

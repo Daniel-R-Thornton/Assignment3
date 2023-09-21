@@ -16,19 +16,18 @@ export const Modal = ({
 }) => {
   return isOpen ? (
     <>
-      <div className="fixed z-40 h-screen w-screen bg-gray-100/40">
+      <div className="fixed z-40 h-screen w-screen  bg-gray-100/40">
         <div
           className="
         fixed
         left-[25vw]
         top-[25vh]
         z-50
-        flex
-        h-[50vh]
-        w-[50vw]
+        flex w-[50vw]
         flex-col
         rounded-sm
         bg-white
+        pb-10
         drop-shadow-lg
       "
         >
