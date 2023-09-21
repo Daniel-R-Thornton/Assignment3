@@ -172,7 +172,9 @@ export default function Adoptions() {
         title="Time to meet the cats, let us know about you!"
         content={formContent}
         isOpen={showCheckoutModal}
-        onCancel={() => {}}
+        onCancel={() => {
+          setShowCheckoutModal(false)
+        }}
         onOk={() => {
           setShowCheckoutModal(false)
         }}

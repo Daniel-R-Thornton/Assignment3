@@ -59,7 +59,9 @@ export const Modal = ({
                 text-white
                 hover:bg-red-700
               "
-              onClick={onCancel}
+              onClick={() => {
+                onCancel()
+              }}
             >
               Cancel
             </button>
