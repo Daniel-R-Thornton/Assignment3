@@ -1,6 +1,6 @@
-![reactjs-vite-tailwindcss-boilerplate](https://user-images.githubusercontent.com/16243531/217138979-b854309c-4742-4275-a705-f9fec5158217.jpg)
+# University Assignment 3
 
-# React Tailwindcss Boilerplate build with Vite
+![AWS Layout](https://github.com/Daniel-R-Thornton/Assignment3/assets/40253824/5d42a767-367c-4142-b6fc-ec304fb2dc2f)
 
 This is a boilerplate build with Vite, React 18, TypeScript, Vitest, Testing Library, TailwindCSS 3, Eslint and Prettier.
 
